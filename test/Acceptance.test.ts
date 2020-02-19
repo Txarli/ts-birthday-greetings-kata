@@ -23,7 +23,7 @@ describe('Acceptance', () => {
   });
 
   it('base scenario', () => {
-    service.sendGreetings(new OurDate('2008/10/08'), SMTP_URL, SMTP_PORT);
+    service.sendGreetings(new OurDate('2008/10/08'));
 
     expect(messagesSent.length).toEqual(1);
     const message = messagesSent[0];
@@ -35,13 +35,13 @@ describe('Acceptance', () => {
   });
 
   it('will not send emails when nobodys birthday', () => {
-    service.sendGreetings(new OurDate('2008/01/01'), SMTP_URL, SMTP_PORT);
+    service.sendGreetings(new OurDate('2008/01/01'));
 
     expect(messagesSent.length).toEqual(0);
   });
 
   it('uses correct transport', () => {
-    service.sendGreetings(new OurDate('2008/10/08'), SMTP_URL, SMTP_PORT);
+    service.sendGreetings(new OurDate('2008/10/08'));
 
     const message = messagesSent[0];
     expect(message.host).toEqual(SMTP_URL);

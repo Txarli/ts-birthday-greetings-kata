@@ -3,12 +3,11 @@ import nodemailer from 'nodemailer';
 import { Message } from '../BirthdayService';
 import { Employee } from '../Employee';
 
+const SMTP_PORT = 25;
+const SMTP_URL = 'localhost';
+
 export class GreetingsRepository {
-  sendGreetingToEmployee(
-    employee: Employee,
-    smtpHost: string,
-    smtpPort: number
-  ) {
+  sendGreetingToEmployee(employee: Employee) {
     const recipient = employee.getEmail();
     const body = 'Happy Birthday, dear %NAME%!'.replace(
       '%NAME%',
@@ -16,8 +15,8 @@ export class GreetingsRepository {
     );
     const subject = 'Happy Birthday!';
     const message = {
-      host: smtpHost,
-      port: smtpPort,
+      host: SMTP_URL,
+      port: SMTP_PORT,
       from: 'sender@here.com',
       to: [recipient],
       subject,

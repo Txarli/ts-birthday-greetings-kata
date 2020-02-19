@@ -11,17 +11,13 @@ export class BirthdayService {
     private employeesRepository: EmployeesRepository
   ) {}
 
-  sendGreetings(ourDate: OurDate, smtpHost: string, smtpPort: number) {
+  sendGreetings(ourDate: OurDate) {
     const employees = this.employeesRepository.getEmployees();
 
     // print all lines
     employees.forEach(employee => {
       if (employee.isBirthday(ourDate)) {
-        this.greetingsRepository.sendGreetingToEmployee(
-          employee,
-          smtpHost,
-          smtpPort
-        );
+        this.greetingsRepository.sendGreetingToEmployee(employee);
       }
     });
   }
