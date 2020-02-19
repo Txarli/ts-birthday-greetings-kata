@@ -1,6 +1,9 @@
-import { BirthdayService, Message } from '../src/BirthdayService';
+import { BirthdayService } from '../src/BirthdayService';
 import { EmployeesRepository } from '../src/infrastructure/EmployeesRepository';
-import { GreetingsRepository } from '../src/infrastructure/GreetingsRepository';
+import {
+  GreetingsRepository,
+  Message,
+} from '../src/infrastructure/GreetingsRepository';
 import { OurDate } from '../src/OurDate';
 
 describe('Acceptance', () => {

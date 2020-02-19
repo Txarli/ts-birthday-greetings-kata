@@ -32,4 +32,4 @@ export class GreetingsRepository {
   }
 }
 
-interface Message extends SMTPTransport.Options, Mail.Options {}
+export interface Message extends SMTPTransport.Options, Mail.Options {}
