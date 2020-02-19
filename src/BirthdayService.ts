@@ -24,10 +24,10 @@ export class BirthdayService {
     // split the contents by new line
     const lines = data.split(/\r?\n/);
     lines.shift();
+    const employees = lines.map(line => this.getEmployee(line));
 
     // print all lines
-    lines.forEach(line => {
-      const employee = this.getEmployee(line);
+    employees.forEach(employee => {
       if (employee.isBirthday(ourDate)) {
         this.messageSender.sendMessage(employee, smtpHost, smtpPort);
       }
