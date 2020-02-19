@@ -3,7 +3,7 @@ import nodemailer from 'nodemailer';
 import { Message } from '../BirthdayService';
 import { Employee } from '../Employee';
 
-export class MessageSender {
+export class GreetingsRepository {
   sendMessage(employee: Employee, smtpHost: string, smtpPort: number) {
     const recipient = employee.getEmail();
     const body = 'Happy Birthday, dear %NAME%!'.replace(
