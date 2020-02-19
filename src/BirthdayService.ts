@@ -1,10 +1,10 @@
 import fs from 'fs';
-import nodemailer from 'nodemailer';
 import Mail from 'nodemailer/lib/mailer';
 import SMTPTransport from 'nodemailer/lib/smtp-transport';
 import path from 'path';
 
 import { Employee } from './Employee';
+import { MessageSender } from './MessageSender';
 import { OurDate } from './OurDate';
 
 export class BirthdayService {
@@ -42,30 +42,3 @@ export class BirthdayService {
 }
 
 export interface Message extends SMTPTransport.Options, Mail.Options {}
-
-export class MessageSender {
-  sendMessage(employee: Employee, smtpHost: string, smtpPort: number) {
-    const recipient = employee.getEmail();
-    const body = 'Happy Birthday, dear %NAME%!'.replace(
-      '%NAME%',
-      employee.getFirstName()
-    );
-    const subject = 'Happy Birthday!';
-    const message = {
-      host: smtpHost,
-      port: smtpPort,
-      from: 'sender@here.com',
-      to: [recipient],
-      subject,
-      text: body
-    };
-    this.deliveryMessage(message);
-  }
-
-  // made protected for testing :-(
-  protected deliveryMessage({ host, port, ...msg }: Message) {
-    const transport = nodemailer.createTransport({ host, port });
-
-    transport.sendMail(msg);
-  }
-}

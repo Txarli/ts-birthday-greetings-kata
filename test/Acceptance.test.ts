@@ -1,8 +1,5 @@
-import {
-  BirthdayService,
-  Message,
-  MessageSender,
-} from '../src/BirthdayService';
+import { BirthdayService, Message } from '../src/BirthdayService';
+import { MessageSender } from '../src/MessageSender';
 import { OurDate } from '../src/OurDate';
 
 describe('Acceptance', () => {
