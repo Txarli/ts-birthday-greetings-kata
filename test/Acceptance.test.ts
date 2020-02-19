@@ -1,5 +1,5 @@
 import { BirthdayService, Message } from '../src/BirthdayService';
-import { GreetingsRepository } from '../src/infrastructure/MessageSender';
+import { GreetingsRepository } from '../src/infrastructure/GreetingsRepository';
 import { OurDate } from '../src/OurDate';
 
 describe('Acceptance', () => {
