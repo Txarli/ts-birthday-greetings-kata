@@ -1,12 +1,17 @@
-import nodemailer from 'nodemailer';
-import Mail from 'nodemailer/lib/mailer';
-import SMTPTransport from 'nodemailer/lib/smtp-transport';
 import { GreetingDelivery } from 'src/domain/GreetingDelivery';
 
 import { Employee } from '../domain/model/Employee';
 
+export interface Transport {
+  sendMail: (message: Message) => void;
+}
+
 export class SmtpGreetingDelivery implements GreetingDelivery {
-  constructor(private smtpPort: number, private smtpUrl: string) {}
+  constructor(
+    private smtpPort: number,
+    private smtpUrl: string,
+    private transport: Transport
+  ) {}
 
   sendGreetingToEmployee(employee: Employee) {
     const recipient = employee.getEmail();
@@ -23,13 +28,15 @@ export class SmtpGreetingDelivery implements GreetingDelivery {
       subject,
       text: body
     };
-    this.deliveryMessage(message);
-  }
-  // made protected for testing :-(
-  protected deliveryMessage({ host, port, ...msg }: Message) {
-    const transport = nodemailer.createTransport({ host, port });
-    transport.sendMail(msg);
+    this.transport.sendMail(message);
   }
 }
 
-export interface Message extends SMTPTransport.Options, Mail.Options {}
+export interface Message {
+  host: string;
+  port: number;
+  from: string;
+  to: string[];
+  subject: string;
+  text: string;
+}

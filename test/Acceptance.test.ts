@@ -3,6 +3,7 @@ import { FileEmployeesRepository } from '../src/infrastructure/FileEmployeesRepo
 import {
   Message,
   SmtpGreetingDelivery,
+  Transport,
 } from '../src/infrastructure/SmtpGreetingDelivery';
 import { BirthdayService } from '../src/services/BirthdayService';
 
@@ -17,11 +18,13 @@ describe('Acceptance', () => {
   beforeEach(() => {
     messagesSent = [];
 
-    messageSender = new (class extends SmtpGreetingDelivery {
-      protected deliveryMessage(message: Message) {
-        messagesSent = messagesSent.concat(message);
+    const transport: Transport = {
+      sendMail: (message: Message) => {
+        messagesSent = [...messagesSent, message];
       }
-    })(SMTP_PORT, SMTP_URL);
+    };
+
+    messageSender = new SmtpGreetingDelivery(SMTP_PORT, SMTP_URL, transport);
     const employeesRepository = new FileEmployeesRepository(FILENAME);
     service = new BirthdayService(messageSender, employeesRepository);
   });
