@@ -2,10 +2,6 @@ import { GreetingDelivery } from 'src/domain/GreetingDelivery';
 
 import { Employee } from '../domain/model/Employee';
 
-export interface Transport {
-  sendMail: (message: Message) => void;
-}
-
 export class SmtpGreetingDelivery implements GreetingDelivery {
   constructor(
     private smtpPort: number,
@@ -30,6 +26,10 @@ export class SmtpGreetingDelivery implements GreetingDelivery {
     };
     this.transport.sendMail(message);
   }
+}
+
+export interface Transport {
+  sendMail: (message: Message) => void;
 }
 
 export interface Message {
