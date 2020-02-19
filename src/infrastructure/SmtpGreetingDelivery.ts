@@ -12,13 +12,12 @@ export class SmtpGreetingDelivery implements GreetingDelivery {
   sendGreetingToEmployee(employee: Employee) {
     const recipient = employee.getEmail();
     const body = `Happy Birthday, dear ${employee.getFirstName()}!`;
-    const subject = 'Happy Birthday!';
     const message = {
       host: this.smtpUrl,
       port: this.smtpPort,
       from: 'sender@here.com',
       to: [recipient],
-      subject,
+      subject: 'Happy Birthday!',
       text: body
     };
     this.transport.sendMail(message);
