@@ -1,10 +1,7 @@
 import { OurDate } from '../src/domain/model/OurDate';
+import { InMemoryTransport } from '../src/infrastructure/__mocks__/InMemoryTransport';
 import { FileEmployeesRepository } from '../src/infrastructure/FileEmployeesRepository';
-import {
-  Message,
-  SmtpGreetingDelivery,
-  Transport,
-} from '../src/infrastructure/SmtpGreetingDelivery';
+import { SmtpGreetingDelivery } from '../src/infrastructure/SmtpGreetingDelivery';
 import { BirthdayService } from '../src/services/BirthdayService';
 
 describe('Acceptance', () => {
@@ -52,15 +49,3 @@ describe('Acceptance', () => {
     expect(message.port).toEqual(SMTP_PORT);
   });
 });
-
-class InMemoryTransport implements Transport {
-  messagesSent: Message[];
-
-  constructor() {
-    this.messagesSent = [];
-  }
-
-  sendMail(message: Message) {
-    this.messagesSent = [...this.messagesSent, message];
-  }
-}
