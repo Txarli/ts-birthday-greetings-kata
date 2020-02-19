@@ -2,7 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import { EmployeesRepository } from 'src/domain/EmployeesRepository';
 
-import { Employee } from '../Employee';
+import { Employee } from '../domain/model/Employee';
 
 const FILENAME = 'employee_data.txt';
 

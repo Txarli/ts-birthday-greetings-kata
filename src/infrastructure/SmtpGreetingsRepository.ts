@@ -3,7 +3,7 @@ import Mail from 'nodemailer/lib/mailer';
 import SMTPTransport from 'nodemailer/lib/smtp-transport';
 import { GreetingsRepository } from 'src/domain/GreetingsRepository';
 
-import { Employee } from '../Employee';
+import { Employee } from '../domain/model/Employee';
 
 export class SmtpGreetingsRepository implements GreetingsRepository {
   constructor(private smtpPort: number, private smtpUrl: string) {}

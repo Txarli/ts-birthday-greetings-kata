@@ -1,4 +1,4 @@
-import { Employee } from 'src/Employee';
+import { Employee } from './model/Employee';
 
 export interface EmployeesRepository {
   getEmployees: () => Employee[];
