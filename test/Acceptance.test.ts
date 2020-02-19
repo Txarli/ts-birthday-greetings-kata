@@ -20,7 +20,7 @@ describe('Acceptance', () => {
       protected deliveryMessage(message: Message) {
         messagesSent = messagesSent.concat(message);
       }
-    })();
+    })(SMTP_PORT, SMTP_URL);
     const employeesRepository = new EmployeesRepository();
     service = new BirthdayService(messageSender, employeesRepository);
   });

@@ -4,10 +4,9 @@ import SMTPTransport from 'nodemailer/lib/smtp-transport';
 
 import { Employee } from '../Employee';
 
-const SMTP_PORT = 25;
-const SMTP_URL = 'localhost';
-
 export class GreetingsRepository {
+  constructor(private smtpPort: number, private smtpUrl: string) {}
+
   sendGreetingToEmployee(employee: Employee) {
     const recipient = employee.getEmail();
     const body = 'Happy Birthday, dear %NAME%!'.replace(
@@ -16,8 +15,8 @@ export class GreetingsRepository {
     );
     const subject = 'Happy Birthday!';
     const message = {
-      host: SMTP_URL,
-      port: SMTP_PORT,
+      host: this.smtpUrl,
+      port: this.smtpPort,
       from: 'sender@here.com',
       to: [recipient],
       subject,
