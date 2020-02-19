@@ -12,13 +12,16 @@ describe('Acceptance', () => {
   const SMTP_URL = 'localhost';
   const FILENAME = 'employee_data.txt';
   let service: BirthdayService;
-  let messageDelivery: SmtpGreetingDelivery;
   let transport: InMemoryTransport;
 
   beforeEach(() => {
     transport = new InMemoryTransport();
 
-    messageDelivery = new SmtpGreetingDelivery(SMTP_PORT, SMTP_URL, transport);
+    const messageDelivery = new SmtpGreetingDelivery(
+      SMTP_PORT,
+      SMTP_URL,
+      transport
+    );
     const employeesRepository = new FileEmployeesRepository(FILENAME);
     service = new BirthdayService(messageDelivery, employeesRepository);
   });
