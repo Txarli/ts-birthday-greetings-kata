@@ -27,17 +27,22 @@ export class BirthdayService {
 
     // print all lines
     lines.forEach(line => {
-      const employeeData = line.split(', ');
-      const employee = new Employee(
-        employeeData[1],
-        employeeData[0],
-        employeeData[2],
-        employeeData[3]
-      );
+      const employee = this.getEmployee(line);
       if (employee.isBirthday(ourDate)) {
         this.messageSender.sendMessage(employee, smtpHost, smtpPort);
       }
     });
+  }
+
+  private getEmployee(line: string) {
+    const employeeData = line.split(', ');
+    const employee = new Employee(
+      employeeData[1],
+      employeeData[0],
+      employeeData[2],
+      employeeData[3]
+    );
+    return employee;
   }
 }
 
