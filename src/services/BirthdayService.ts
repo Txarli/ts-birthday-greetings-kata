@@ -9,12 +9,10 @@ export class BirthdayService {
   ) {}
 
   sendGreetings(ourDate: OurDate) {
-    const employees = this.employeesRepository.getEmployees();
+    const employees = this.employeesRepository.getEmployeesByBirthDate(ourDate);
 
     employees.forEach(employee => {
-      if (employee.isBirthday(ourDate)) {
-        this.greetingDelivery.sendGreetingToEmployee(employee);
-      }
+      this.greetingDelivery.sendGreetingToEmployee(employee);
     });
   }
 }

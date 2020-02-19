@@ -1,5 +1,6 @@
 import { Employee } from './model/Employee';
+import { OurDate } from './model/OurDate';
 
 export interface EmployeesRepository {
-  getEmployees: () => Employee[];
+  getEmployeesByBirthDate: (birthDate: OurDate) => Employee[];
 }
