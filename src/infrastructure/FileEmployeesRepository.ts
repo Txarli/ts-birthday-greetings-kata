@@ -5,12 +5,12 @@ import { OurDate } from 'src/domain/model/OurDate';
 
 import { Employee } from '../domain/model/Employee';
 
-const FILENAME = 'employee_data.txt';
-
 export class FileEmployeesRepository implements EmployeesRepository {
+  constructor(private fileName: string) {}
+
   getEmployeesByBirthDate(birthDate: OurDate) {
     const data = fs.readFileSync(
-      path.resolve(__dirname, `../../resources/${FILENAME}`),
+      path.resolve(__dirname, `../../resources/${this.fileName}`),
       'UTF-8'
     );
     // split the contents by new line

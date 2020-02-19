@@ -9,6 +9,7 @@ import { BirthdayService } from '../src/services/BirthdayService';
 describe('Acceptance', () => {
   const SMTP_PORT = 25;
   const SMTP_URL = 'localhost';
+  const FILENAME = 'employee_data.txt';
   let messagesSent: Message[];
   let service: BirthdayService;
   let messageSender: SmtpGreetingDelivery;
@@ -21,7 +22,7 @@ describe('Acceptance', () => {
         messagesSent = messagesSent.concat(message);
       }
     })(SMTP_PORT, SMTP_URL);
-    const employeesRepository = new FileEmployeesRepository();
+    const employeesRepository = new FileEmployeesRepository(FILENAME);
     service = new BirthdayService(messageSender, employeesRepository);
   });
 
