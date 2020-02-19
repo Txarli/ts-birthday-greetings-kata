@@ -8,7 +8,7 @@ import { GreetingsRepository } from './infrastructure/MessageSender';
 import { OurDate } from './OurDate';
 
 export class BirthdayService {
-  constructor(private messageSender: GreetingsRepository) {}
+  constructor(private greetingsRepository: GreetingsRepository) {}
 
   sendGreetings(
     fileName: string,
@@ -21,7 +21,7 @@ export class BirthdayService {
     // print all lines
     employees.forEach(employee => {
       if (employee.isBirthday(ourDate)) {
-        this.messageSender.sendMessage(employee, smtpHost, smtpPort);
+        this.greetingsRepository.sendMessage(employee, smtpHost, smtpPort);
       }
     });
   }
