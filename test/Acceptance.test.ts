@@ -1,5 +1,5 @@
 import { BirthdayService } from '../src/BirthdayService';
-import { EmployeesRepository } from '../src/infrastructure/EmployeesRepository';
+import { FileEmployeesRepository } from '../src/infrastructure/FileEmployeesRepository';
 import {
   Message,
   SmtpGreetingsRepository,
@@ -21,7 +21,7 @@ describe('Acceptance', () => {
         messagesSent = messagesSent.concat(message);
       }
     })(SMTP_PORT, SMTP_URL);
-    const employeesRepository = new EmployeesRepository();
+    const employeesRepository = new FileEmployeesRepository();
     service = new BirthdayService(messageSender, employeesRepository);
   });
 

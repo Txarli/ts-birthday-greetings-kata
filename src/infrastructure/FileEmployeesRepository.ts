@@ -5,7 +5,7 @@ import { Employee } from '../Employee';
 
 const FILENAME = 'employee_data.txt';
 
-export class EmployeesRepository {
+export class FileEmployeesRepository {
   getEmployees() {
     const data = fs.readFileSync(
       path.resolve(__dirname, `../../resources/${FILENAME}`),
