@@ -1,11 +1,11 @@
+import { EmployeesRepository } from './domain/EmployeesRepository';
 import { GreetingsRepository } from './domain/GreetingsRepository';
-import { FileEmployeesRepository } from './infrastructure/FileEmployeesRepository';
 import { OurDate } from './OurDate';
 
 export class BirthdayService {
   constructor(
     private greetingsRepository: GreetingsRepository,
-    private employeesRepository: FileEmployeesRepository
+    private employeesRepository: EmployeesRepository
   ) {}
 
   sendGreetings(ourDate: OurDate) {
