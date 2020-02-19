@@ -11,18 +11,12 @@ describe('Acceptance', () => {
   const SMTP_PORT = 25;
   const SMTP_URL = 'localhost';
   const FILENAME = 'employee_data.txt';
-  let messagesSent: Message[];
   let service: BirthdayService;
   let messageDelivery: SmtpGreetingDelivery;
+  let transport: InMemoryTransport;
 
   beforeEach(() => {
-    messagesSent = [];
-
-    const transport: Transport = {
-      sendMail: (message: Message) => {
-        messagesSent = [...messagesSent, message];
-      }
-    };
+    transport = new InMemoryTransport();
 
     messageDelivery = new SmtpGreetingDelivery(SMTP_PORT, SMTP_URL, transport);
     const employeesRepository = new FileEmployeesRepository(FILENAME);
@@ -32,8 +26,8 @@ describe('Acceptance', () => {
   it('base scenario', () => {
     service.sendGreetings(new OurDate('2008/10/08'));
 
-    expect(messagesSent.length).toEqual(1);
-    const message = messagesSent[0];
+    expect(transport.messagesSent.length).toEqual(1);
+    const message = transport.messagesSent[0];
     expect(message.text).toEqual('Happy Birthday, dear John!');
     expect(message.subject).toEqual('Happy Birthday!');
     const tos = message.to as string[];
@@ -44,14 +38,26 @@ describe('Acceptance', () => {
   it('will not send emails when nobodys birthday', () => {
     service.sendGreetings(new OurDate('2008/01/01'));
 
-    expect(messagesSent.length).toEqual(0);
+    expect(transport.messagesSent.length).toEqual(0);
   });
 
   it('uses correct transport', () => {
     service.sendGreetings(new OurDate('2008/10/08'));
 
-    const message = messagesSent[0];
+    const message = transport.messagesSent[0];
     expect(message.host).toEqual(SMTP_URL);
     expect(message.port).toEqual(SMTP_PORT);
   });
 });
+
+class InMemoryTransport implements Transport {
+  messagesSent: Message[];
+
+  constructor() {
+    this.messagesSent = [];
+  }
+
+  sendMail(message: Message) {
+    this.messagesSent = [...this.messagesSent, message];
+  }
+}
