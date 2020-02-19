@@ -24,7 +24,7 @@ export class BirthdayService {
     // split the contents by new line
     const lines = data.split(/\r?\n/);
     lines.shift();
-    const employees = lines.map(line => this.getEmployee(line));
+    const employees = lines.map(line => this.createEmployeeFromLine(line));
 
     // print all lines
     employees.forEach(employee => {
@@ -34,7 +34,7 @@ export class BirthdayService {
     });
   }
 
-  private getEmployee(line: string) {
+  private createEmployeeFromLine(line: string) {
     const employeeData = line.split(', ');
     const employee = new Employee(
       employeeData[1],
