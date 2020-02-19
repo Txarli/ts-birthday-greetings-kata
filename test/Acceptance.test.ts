@@ -1,10 +1,10 @@
 import { BirthdayService } from '../src/BirthdayService';
+import { OurDate } from '../src/domain/model/OurDate';
 import { FileEmployeesRepository } from '../src/infrastructure/FileEmployeesRepository';
 import {
   Message,
   SmtpGreetingsRepository,
 } from '../src/infrastructure/SmtpGreetingsRepository';
-import { OurDate } from '../src/OurDate';
 
 describe('Acceptance', () => {
   const SMTP_PORT = 25;

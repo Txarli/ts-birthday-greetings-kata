@@ -1,5 +1,5 @@
 import { Employee } from '../src/domain/model/Employee';
-import { OurDate } from '../src/OurDate';
+import { OurDate } from '../src/domain/model/OurDate';
 
 describe('Employee', () => {
   it('is birthday', () => {

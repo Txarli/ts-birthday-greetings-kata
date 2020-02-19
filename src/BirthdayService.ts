@@ -1,6 +1,6 @@
 import { EmployeesRepository } from './domain/EmployeesRepository';
 import { GreetingsRepository } from './domain/GreetingsRepository';
-import { OurDate } from './OurDate';
+import { OurDate } from './domain/model/OurDate';
 
 export class BirthdayService {
   constructor(
