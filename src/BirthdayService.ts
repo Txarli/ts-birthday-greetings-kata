@@ -16,15 +16,7 @@ export class BirthdayService {
     smtpHost: string,
     smtpPort: number
   ) {
-    const data = fs.readFileSync(
-      path.resolve(__dirname, `../resources/${fileName}`),
-      'UTF-8'
-    );
-
-    // split the contents by new line
-    const lines = data.split(/\r?\n/);
-    lines.shift();
-    const employees = lines.map(line => this.createEmployeeFromLine(line));
+    const employees = this.getEmployees(fileName);
 
     // print all lines
     employees.forEach(employee => {
@@ -32,6 +24,18 @@ export class BirthdayService {
         this.messageSender.sendMessage(employee, smtpHost, smtpPort);
       }
     });
+  }
+
+  private getEmployees(fileName: string) {
+    const data = fs.readFileSync(
+      path.resolve(__dirname, `../resources/${fileName}`),
+      'UTF-8'
+    );
+    // split the contents by new line
+    const lines = data.split(/\r?\n/);
+    lines.shift();
+    const employees = lines.map(line => this.createEmployeeFromLine(line));
+    return employees;
   }
 
   private createEmployeeFromLine(line: string) {
