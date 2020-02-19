@@ -4,7 +4,7 @@ import SMTPTransport from 'nodemailer/lib/smtp-transport';
 
 import { Employee } from '../Employee';
 
-export class GreetingsRepository {
+export class SmtpGreetingsRepository {
   constructor(private smtpPort: number, private smtpUrl: string) {}
 
   sendGreetingToEmployee(employee: Employee) {
