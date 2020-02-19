@@ -1,11 +1,12 @@
 import fs from 'fs';
 import path from 'path';
+import { EmployeesRepository } from 'src/domain/EmployeesRepository';
 
 import { Employee } from '../Employee';
 
 const FILENAME = 'employee_data.txt';
 
-export class FileEmployeesRepository {
+export class FileEmployeesRepository implements EmployeesRepository {
   getEmployees() {
     const data = fs.readFileSync(
       path.resolve(__dirname, `../../resources/${FILENAME}`),
