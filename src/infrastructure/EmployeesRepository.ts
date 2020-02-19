@@ -1,12 +1,12 @@
 import fs from 'fs';
 import path from 'path';
 
-import { Employee } from './Employee';
+import { Employee } from '../Employee';
 
 export class EmployeesRepository {
   getEmployees(fileName: string) {
     const data = fs.readFileSync(
-      path.resolve(__dirname, `../resources/${fileName}`),
+      path.resolve(__dirname, `../../resources/${fileName}`),
       'UTF-8'
     );
     // split the contents by new line

@@ -1,7 +1,7 @@
 import Mail from 'nodemailer/lib/mailer';
 import SMTPTransport from 'nodemailer/lib/smtp-transport';
 
-import { EmployeesRepository } from './EmployeesRepository';
+import { EmployeesRepository } from './infrastructure/EmployeesRepository';
 import { GreetingsRepository } from './infrastructure/GreetingsRepository';
 import { OurDate } from './OurDate';
 
