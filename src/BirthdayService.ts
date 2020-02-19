@@ -14,7 +14,6 @@ export class BirthdayService {
   sendGreetings(ourDate: OurDate) {
     const employees = this.employeesRepository.getEmployees();
 
-    // print all lines
     employees.forEach(employee => {
       if (employee.isBirthday(ourDate)) {
         this.greetingsRepository.sendGreetingToEmployee(employee);
