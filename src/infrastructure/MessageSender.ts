@@ -1,7 +1,7 @@
 import nodemailer from 'nodemailer';
 
-import { Message } from './BirthdayService';
-import { Employee } from './Employee';
+import { Message } from '../BirthdayService';
+import { Employee } from '../Employee';
 
 export class MessageSender {
   sendMessage(employee: Employee, smtpHost: string, smtpPort: number) {

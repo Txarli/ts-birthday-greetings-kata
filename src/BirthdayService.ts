@@ -4,7 +4,7 @@ import SMTPTransport from 'nodemailer/lib/smtp-transport';
 import path from 'path';
 
 import { Employee } from './Employee';
-import { MessageSender } from './MessageSender';
+import { MessageSender } from './infrastructure/MessageSender';
 import { OurDate } from './OurDate';
 
 export class BirthdayService {
