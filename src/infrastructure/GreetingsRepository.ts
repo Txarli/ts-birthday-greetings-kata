@@ -1,6 +1,7 @@
 import nodemailer from 'nodemailer';
+import Mail from 'nodemailer/lib/mailer';
+import SMTPTransport from 'nodemailer/lib/smtp-transport';
 
-import { Message } from '../BirthdayService';
 import { Employee } from '../Employee';
 
 const SMTP_PORT = 25;
@@ -30,3 +31,5 @@ export class GreetingsRepository {
     transport.sendMail(msg);
   }
 }
+
+interface Message extends SMTPTransport.Options, Mail.Options {}
