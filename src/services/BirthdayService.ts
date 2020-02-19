@@ -4,7 +4,7 @@ import { OurDate } from '../domain/model/OurDate';
 
 export class BirthdayService {
   constructor(
-    private greetingsRepository: GreetingDelivery,
+    private greetingDelivery: GreetingDelivery,
     private employeesRepository: EmployeesRepository
   ) {}
 
@@ -13,7 +13,7 @@ export class BirthdayService {
 
     employees.forEach(employee => {
       if (employee.isBirthday(ourDate)) {
-        this.greetingsRepository.sendGreetingToEmployee(employee);
+        this.greetingDelivery.sendGreetingToEmployee(employee);
       }
     });
   }
