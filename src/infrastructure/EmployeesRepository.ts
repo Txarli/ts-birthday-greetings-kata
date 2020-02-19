@@ -3,10 +3,12 @@ import path from 'path';
 
 import { Employee } from '../Employee';
 
+const FILENAME = 'employee_data.txt';
+
 export class EmployeesRepository {
-  getEmployees(fileName: string) {
+  getEmployees() {
     const data = fs.readFileSync(
-      path.resolve(__dirname, `../../resources/${fileName}`),
+      path.resolve(__dirname, `../../resources/${FILENAME}`),
       'UTF-8'
     );
     // split the contents by new line

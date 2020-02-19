@@ -11,13 +11,8 @@ export class BirthdayService {
     private employeesRepository: EmployeesRepository
   ) {}
 
-  sendGreetings(
-    fileName: string,
-    ourDate: OurDate,
-    smtpHost: string,
-    smtpPort: number
-  ) {
-    const employees = this.employeesRepository.getEmployees(fileName);
+  sendGreetings(ourDate: OurDate, smtpHost: string, smtpPort: number) {
+    const employees = this.employeesRepository.getEmployees();
 
     // print all lines
     employees.forEach(employee => {
