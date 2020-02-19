@@ -21,7 +21,11 @@ export class BirthdayService {
     // print all lines
     employees.forEach(employee => {
       if (employee.isBirthday(ourDate)) {
-        this.greetingsRepository.sendMessage(employee, smtpHost, smtpPort);
+        this.greetingsRepository.sendGreetingToEmployee(
+          employee,
+          smtpHost,
+          smtpPort
+        );
       }
     });
   }
