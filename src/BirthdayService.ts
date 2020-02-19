@@ -8,7 +8,10 @@ import { GreetingsRepository } from './infrastructure/GreetingsRepository';
 import { OurDate } from './OurDate';
 
 export class BirthdayService {
-  constructor(private greetingsRepository: GreetingsRepository) {}
+  constructor(
+    private greetingsRepository: GreetingsRepository,
+    private employeesRepository: EmployeesRepository
+  ) {}
 
   sendGreetings(
     fileName: string,
@@ -16,7 +19,7 @@ export class BirthdayService {
     smtpHost: string,
     smtpPort: number
   ) {
-    const employees = this.getEmployees(fileName);
+    const employees = this.employeesRepository.getEmployees(fileName);
 
     // print all lines
     employees.forEach(employee => {
@@ -29,8 +32,12 @@ export class BirthdayService {
       }
     });
   }
+}
 
-  private getEmployees(fileName: string) {
+export interface Message extends SMTPTransport.Options, Mail.Options {}
+
+export class EmployeesRepository {
+  getEmployees(fileName: string) {
     const data = fs.readFileSync(
       path.resolve(__dirname, `../resources/${fileName}`),
       'UTF-8'
@@ -53,5 +60,3 @@ export class BirthdayService {
     return employee;
   }
 }
-
-export interface Message extends SMTPTransport.Options, Mail.Options {}

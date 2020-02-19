@@ -1,4 +1,8 @@
-import { BirthdayService, Message } from '../src/BirthdayService';
+import {
+  BirthdayService,
+  EmployeesRepository,
+  Message,
+} from '../src/BirthdayService';
 import { GreetingsRepository } from '../src/infrastructure/GreetingsRepository';
 import { OurDate } from '../src/OurDate';
 
@@ -17,7 +21,8 @@ describe('Acceptance', () => {
         messagesSent = messagesSent.concat(message);
       }
     })();
-    service = new BirthdayService(messageSender);
+    const employeesRepository = new EmployeesRepository();
+    service = new BirthdayService(messageSender, employeesRepository);
   });
 
   it('base scenario', () => {
