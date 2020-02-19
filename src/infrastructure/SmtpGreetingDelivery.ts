@@ -5,7 +5,7 @@ import { GreetingDelivery } from 'src/domain/GreetingDelivery';
 
 import { Employee } from '../domain/model/Employee';
 
-export class SmtpGreetingsRepository implements GreetingDelivery {
+export class SmtpGreetingDelivery implements GreetingDelivery {
   constructor(private smtpPort: number, private smtpUrl: string) {}
 
   sendGreetingToEmployee(employee: Employee) {

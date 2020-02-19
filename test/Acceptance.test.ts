@@ -2,8 +2,8 @@ import { OurDate } from '../src/domain/model/OurDate';
 import { FileEmployeesRepository } from '../src/infrastructure/FileEmployeesRepository';
 import {
   Message,
-  SmtpGreetingsRepository,
-} from '../src/infrastructure/SmtpGreetingsRepository';
+  SmtpGreetingDelivery,
+} from '../src/infrastructure/SmtpGreetingDelivery';
 import { BirthdayService } from '../src/services/BirthdayService';
 
 describe('Acceptance', () => {
@@ -11,12 +11,12 @@ describe('Acceptance', () => {
   const SMTP_URL = 'localhost';
   let messagesSent: Message[];
   let service: BirthdayService;
-  let messageSender: SmtpGreetingsRepository;
+  let messageSender: SmtpGreetingDelivery;
 
   beforeEach(() => {
     messagesSent = [];
 
-    messageSender = new (class extends SmtpGreetingsRepository {
+    messageSender = new (class extends SmtpGreetingDelivery {
       protected deliveryMessage(message: Message) {
         messagesSent = messagesSent.concat(message);
       }
