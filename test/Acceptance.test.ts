@@ -13,7 +13,7 @@ describe('Acceptance', () => {
   const FILENAME = 'employee_data.txt';
   let messagesSent: Message[];
   let service: BirthdayService;
-  let messageSender: SmtpGreetingDelivery;
+  let messageDelivery: SmtpGreetingDelivery;
 
   beforeEach(() => {
     messagesSent = [];
@@ -24,9 +24,9 @@ describe('Acceptance', () => {
       }
     };
 
-    messageSender = new SmtpGreetingDelivery(SMTP_PORT, SMTP_URL, transport);
+    messageDelivery = new SmtpGreetingDelivery(SMTP_PORT, SMTP_URL, transport);
     const employeesRepository = new FileEmployeesRepository(FILENAME);
-    service = new BirthdayService(messageSender, employeesRepository);
+    service = new BirthdayService(messageDelivery, employeesRepository);
   });
 
   it('base scenario', () => {
