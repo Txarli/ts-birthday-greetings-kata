@@ -1,11 +1,11 @@
 import nodemailer from 'nodemailer';
 import Mail from 'nodemailer/lib/mailer';
 import SMTPTransport from 'nodemailer/lib/smtp-transport';
-import { GreetingsRepository } from 'src/domain/GreetingsRepository';
+import { GreetingDelivery } from 'src/domain/GreetingDelivery';
 
 import { Employee } from '../domain/model/Employee';
 
-export class SmtpGreetingsRepository implements GreetingsRepository {
+export class SmtpGreetingsRepository implements GreetingDelivery {
   constructor(private smtpPort: number, private smtpUrl: string) {}
 
   sendGreetingToEmployee(employee: Employee) {
