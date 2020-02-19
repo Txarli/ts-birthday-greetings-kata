@@ -8,6 +8,8 @@ import { Employee } from './Employee';
 import { OurDate } from './OurDate';
 
 export class BirthdayService {
+  constructor(private messageSender: MessageSender) {}
+
   sendGreetings(
     fileName: string,
     ourDate: OurDate,
@@ -33,12 +35,16 @@ export class BirthdayService {
         employeeData[3]
       );
       if (employee.isBirthday(ourDate)) {
-        this.sendMessage(employee, smtpHost, smtpPort);
+        this.messageSender.sendMessage(employee, smtpHost, smtpPort);
       }
     });
   }
+}
 
-  private sendMessage(employee: Employee, smtpHost: string, smtpPort: number) {
+export interface Message extends SMTPTransport.Options, Mail.Options {}
+
+export class MessageSender {
+  sendMessage(employee: Employee, smtpHost: string, smtpPort: number) {
     const recipient = employee.getEmail();
     const body = 'Happy Birthday, dear %NAME%!'.replace(
       '%NAME%',
@@ -63,5 +69,3 @@ export class BirthdayService {
     transport.sendMail(msg);
   }
 }
-
-export interface Message extends SMTPTransport.Options, Mail.Options {}
